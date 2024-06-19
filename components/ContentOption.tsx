@@ -9,7 +9,7 @@ interface ContentOptionProps {
 
 const ContentOption: React.FC<ContentOptionProps> = ({ text, image: ImageComponent, title }) => {
   return (
-    <Box display={'flex'} alignItems={'center'} justifyContent={'center'} paddingBottom={'10px'} width={'350px'}>  
+    <Box display={'flex'} alignItems={'center'} justifyContent={'center'} paddingBottom={'10px'} width={'350px'}>
       <Card sx={{
         width: '300px',
         border: '2px solid #FDD13C',
@@ -21,9 +21,12 @@ const ContentOption: React.FC<ContentOptionProps> = ({ text, image: ImageCompone
         bgcolor: '#031B31',
         color: '#FDD13C',
         margin: '10px',
-        '&:hover':{
-          borderColor: 'white',
-          cursor: 'pointer'
+        '@media (hover: hover) and (pointer: fine)': {
+          '&:hover': {
+            borderColor: 'white',
+            cursor: 'pointer',
+            boxShadow: '0 0 15px 8px yellow'
+          }
         }
       }}>
         {React.isValidElement(ImageComponent) ? (
