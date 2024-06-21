@@ -23,9 +23,9 @@ const ContentOption: React.FC<ContentOptionProps> = ({ text, image: ImageCompone
         margin: '10px',
         '@media (hover: hover) and (pointer: fine)': {
           '&:hover': {
-            borderColor: 'white',
+            borderColor: '#FDD13C',
             cursor: 'pointer',
-            boxShadow: '0 0 15px 8px yellow'
+            boxShadow: '0 0 15px 8px rgba(253, 209, 60, 0.75)',
           }
         }
       }}>
