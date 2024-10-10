@@ -24,7 +24,6 @@ const ExactOffer: React.FC<ExactOfferProps> = ({ open, handleClose, service }) =
     if(service.images){
       setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : service.images.length - 1));
     }
-    
   };
 
   const handleNextImage = () => {
@@ -91,26 +90,32 @@ const ExactOffer: React.FC<ExactOfferProps> = ({ open, handleClose, service }) =
         {/* Wyświetlanie obrazu */}
         {service.images && service.images.length > 0 ? (
           <Image
-            width={200}
-            height={200}
             src={service.images[currentIndex]}
             alt={`${service.title} - Page ${currentIndex + 1}`}
+            layout="responsive"
+            width={1000} // Szerokość bazowa (referencyjna)
+            height={800} // Wysokość bazowa (referencyjna)
             style={{
               maxWidth: '100%',
               maxHeight: '100%',
               objectFit: 'contain',
+              width: 'auto',
+              height: 'auto',
             }}
           />
         ) : service.image ? (
           <Image 
-            width={200}
-            height={200}
             src={service.image}
             alt={service.title}
+            layout="responsive"
+            width={1000} // Szerokość bazowa (referencyjna)
+            height={800} // Wysokość bazowa (referencyjna)
             style={{
               maxWidth: '100%',
               maxHeight: '100%',
               objectFit: 'contain',
+              width: 'auto',
+              height: 'auto',
             }}
           />
         ) : (
