@@ -20,14 +20,18 @@ interface ExactOfferProps {
 const ExactOffer: React.FC<ExactOfferProps> = ({ open, handleClose, service }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
+  // Poprawiony handlePrevImage z opcjonalnym chaining
   const handlePrevImage = () => {
-    if(service.images){
-      setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : service.images.length - 1));
+    if (service.images && service.images.length > 0) {
+      setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : service.images!.length - 1));
     }
   };
 
+  // Poprawiony handleNextImage z opcjonalnym chaining
   const handleNextImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex < service.images.length - 1 ? prevIndex + 1 : 0));
+    if (service.images && service.images.length > 0) {
+      setCurrentIndex((prevIndex) => (prevIndex < service.images!.length - 1 ? prevIndex + 1 : 0));
+    }
   };
 
   return (
