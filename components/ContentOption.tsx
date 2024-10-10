@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 
 interface ContentOptionProps {
   text: string;
-  image: ReactNode;
+  image: ReactNode; // Ikona na karcie
   title: string;
 }
 
