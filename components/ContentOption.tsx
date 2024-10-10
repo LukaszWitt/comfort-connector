@@ -45,7 +45,7 @@ const ContentOption: React.FC<ContentOptionProps> = ({ text, image: ImageCompone
           <Typography gutterBottom variant="h5" component="div" sx={{ color: '#FDD13C' }}>
             {title}
           </Typography>
-          <Typography variant="body2" sx={{ color: '#FDD13C' }}>
+          <Typography variant="body2" sx={{ color: '#E5E5E5' }}>
             {text}
           </Typography>
         </CardContent>
