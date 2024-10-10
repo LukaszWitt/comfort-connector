@@ -1,13 +1,14 @@
-import { Box, Typography, Modal, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
-import React from "react";
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { Box, Modal, IconButton } from "@mui/material";
+import React, { useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Image from "next/image";
 
 interface Service {
   title: string;
-  description: string;
-  image?: string;
-  icon?: React.ReactElement;
+  image?: string; // Ścieżka do jednego obrazu PNG (opcjonalnie)
+  images?: string[]; // Lista ścieżek do wielu obrazów PNG (opcjonalnie)
 }
 
 interface ExactOfferProps {
@@ -17,6 +18,19 @@ interface ExactOfferProps {
 }
 
 const ExactOffer: React.FC<ExactOfferProps> = ({ open, handleClose, service }) => {
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+  const handlePrevImage = () => {
+    if(service.images){
+      setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : service.images.length - 1));
+    }
+    
+  };
+
+  const handleNextImage = () => {
+    setCurrentIndex((prevIndex) => (prevIndex < service.images.length - 1 ? prevIndex + 1 : 0));
+  };
+
   return (
     <Modal
       open={open}
@@ -26,57 +40,99 @@ const ExactOffer: React.FC<ExactOfferProps> = ({ open, handleClose, service }) =
     >
       <Box
         sx={{
-          position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "90%", // Szerokość 90% dla małych ekranów
-          maxWidth: "1500px", // Maksymalna szerokość dla dużych ekranów
-          maxHeight: "90%", // Maksymalna wysokość
-          height: 'auto', // Automatyczna wysokość
+          width: "90vw",
+          maxWidth: "1000px",
+          height: "90vh",
           bgcolor: "#031B31",
-          color: "#FDD13C",
           boxShadow: 24,
-          p: 4,
-          display: "flex",
-          flexDirection: "row",
           outline: "none",
-          overflowY: "auto",
-          "@media (max-width: 600px)": {
-            flexDirection: "column",
-            width: "95%",
-            height: "auto",
-          }
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          overflow: "hidden",
+          p: 2,
+          position: "relative",
         }}
       >
-        <Box 
-          onClick={handleClose} 
-          sx={{position: 'absolute', top: '0', right: '0', cursor:'pointer', userSelect: 'none'}}
+        {/* Ikona do zamykania modala */}
+        <Box
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            cursor: 'pointer',
+            userSelect: 'none',
+            color: "#FDD13C",
+            zIndex: 10,
+          }}
         >
           <CloseIcon />
         </Box>
-        <Box sx={{ width: { xs: "100%", sm: "33%" }, paddingRight: { xs: 0, sm: 2 }, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          {service.image ? (
-            <img src={service.image} alt={service.title} style={{ width: "80%", maxHeight: '300px', objectFit: 'cover' }} />
-          ) : (
-            service.icon && React.cloneElement(service.icon, { sx: { fontSize: 200, color: "#FDD13C", border:'8px solid #FDD13C' } })
-          )}
-        </Box>
-        <Box sx={{ width: { xs: "100%", sm: "67%" }, paddingLeft: { xs: 0, sm: 2 } }}>
-          <Typography id="service-modal-title" variant="h4" component="div" gutterBottom>
-            {service.title}
-          </Typography>
-          <List>
-            {service.description.split('\n').map((item, index) => (
-              <ListItem key={index}>
-                <ListItemIcon>
-                  <FiberManualRecordIcon sx={{ color: "#FDD13C", fontSize: 12 }} /> {/* Ikona kropki */}
-                </ListItemIcon>
-                <ListItemText primary={item} primaryTypographyProps={{ fontSize: '1.50rem' }} />
-              </ListItem>
-            ))}
-          </List>
-        </Box>
+
+        {/* Strzałka do przechodzenia do poprzedniego obrazu */}
+        {service.images && service.images.length > 1 && (
+          <IconButton
+            onClick={handlePrevImage}
+            sx={{
+              position: 'absolute',
+              left: '10px',
+              color: "#FDD13C",
+              zIndex: 10,
+            }}
+          >
+            <ArrowBackIosIcon />
+          </IconButton>
+        )}
+
+        {/* Wyświetlanie obrazu */}
+        {service.images && service.images.length > 0 ? (
+          <Image
+            width={200}
+            height={200}
+            src={service.images[currentIndex]}
+            alt={`${service.title} - Page ${currentIndex + 1}`}
+            style={{
+              maxWidth: '100%',
+              maxHeight: '100%',
+              objectFit: 'contain',
+            }}
+          />
+        ) : service.image ? (
+          <Image 
+            width={200}
+            height={200}
+            src={service.image}
+            alt={service.title}
+            style={{
+              maxWidth: '100%',
+              maxHeight: '100%',
+              objectFit: 'contain',
+            }}
+          />
+        ) : (
+          <Box sx={{ color: "#FDD13C", textAlign: "center", mt: 2 }}>
+            Brak dostępnych obrazów dla tej usługi.
+          </Box>
+        )}
+
+        {/* Strzałka do przechodzenia do następnego obrazu */}
+        {service.images && service.images.length > 1 && (
+          <IconButton
+            onClick={handleNextImage}
+            sx={{
+              position: 'absolute',
+              right: '10px',
+              color: "#FDD13C",
+              zIndex: 10,
+            }}
+          >
+            <ArrowForwardIosIcon />
+          </IconButton>
+        )}
       </Box>
     </Modal>
   );
