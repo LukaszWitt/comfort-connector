@@ -11,53 +11,44 @@ import FoundationIcon from '@mui/icons-material/Foundation';
 
 interface Service {
   title: string;
-  description: string;
-  image: string;
-  modalImage: string;
-  icon: JSX.Element;
+  image?: string; // Pojedynczy obraz PNG (opcjonalnie)
+  images?: string[]; // Lista ścieżek do wielu obrazów PNG (opcjonalnie)
+  icon: JSX.Element; // Ikona na karcie
 }
 
 const serviceData: Service[] = [
   {
     title: 'INSTALACJE ELEKTRYCZNE',
-    description: 'Projektowanie i montaż instalacji elektrycznych w nowych budynkach mieszkalnych i komercyjnych.\nModernizację i rozbudowę istniejących instalacji.\nInstalację i konfigurację systemów oświetleniowych, zarówno wewnętrznych, jak i zewnętrznych.\nMontaż systemów zasilania awaryjnego, w tym generatorów i UPS.\nInstalację systemów zabezpieczeń, takich jak alarmy, monitoring i systemy kontroli dostępu',
-    image: '', // Ikona na karcie
-    modalImage: '/mnt/data/image.png', // Obraz w modalu
+    image: '/images/uslugielektryczne.png', // Pojedynczy obraz PNG
     icon: <ElectricalServicesIcon sx={{ fontSize: 160 }} />,
   },
   {
     title: 'INSTALACJE SMART-HOME',
-    description: 'Zdalne sterowanie oświetleniem, ogrzewaniem, klimatyzacją i innymi urządzeniami.\nIntegracja z systemami alarmowymi i monitoringu dla zwiększenia bezpieczeństwa.\nAutomatyzacja rutynowych czynności, takich jak otwieranie/zamykanie rolet czy podlewanie ogrodu.\nWykorzystanie polskiego producenta AMPIO, co gwarantuje wysoką jakość i niezawodność systemów.\nPersonalizowane rozwiązania dostosowane do potrzeb klienta.',
-    image: '', // Ikona na karcie
-    modalImage: '/mnt/data/image.png', // Obraz w modalu
+    images: [
+      '/images/smarthome.png',
+      '/images/smarthome(2).png',
+      '/images/smarthome(3).png',
+    ], // Lista obrazów PNG dla wielu stron
     icon: <HomeIcon sx={{ fontSize: 160 }} />,
   },
   {
     title: 'POMIARY ELEKTRYCZNE (UBEZPIECZENIA)',
-    description: 'Przeglądy i pomiary instalacji elektrycznych w budynkach mieszkalnych, komercyjnych i przemysłowych.\nWystawianie raportów i certyfikatów niezbędnych do ubezpieczenia nieruchomości.\nPomiary rezystancji izolacji, pętli zwarcia, wyłączników różnicowoprądowych i inne.\nDoradztwo w zakresie poprawy bezpieczeństwa instalacji elektrycznych.',
-    image: '', // Ikona na karcie
-    modalImage: '', // Brak obrazu, użycie ikony w modalu
+    image: '/images/pomiaryicertyfikaty.png', // Pojedynczy obraz PNG
     icon: <SpeedIcon sx={{ fontSize: 160 }} />,
   },
   {
     title: 'WYSTAWIANIE CERTYFIKATÓW ENERGETYCZNYCH',
-    description: 'Ocena efektywności energetycznej budynków.\nWystawianie świadectw charakterystyki energetycznej, które są wymagane przy sprzedaży i wynajmie nieruchomości.\nDoradztwo w zakresie poprawy efektywności energetycznej budynków.\nAnaliza i rekomendacje dotyczące modernizacji instalacji i systemów grzewczych.',
-    image: '', // Ikona na karcie
-    modalImage: '', // Brak obrazu, użycie ikony w modalu
+    image: '/images/pomiaryicertyfikaty.png', // Pojedynczy obraz PNG
     icon: <VerifiedIcon sx={{ fontSize: 160 }} />,
   },
   {
     title: 'INSTALACJE BASENOWE',
-    description: 'Projektowanie i montaż systemów oświetlenia basenowego.\nInstalacja systemów filtracji i ogrzewania wody.\nMontaż i konfiguracja systemów zabezpieczeń basenowych, takich jak alarmy i monitoring.\nIntegracja z systemami Smart-Home dla zdalnego sterowania i monitorowania.',
-    image: '', // Ikona na karcie
-    modalImage: '/mnt/data/image.png', // Obraz w modalu
+    image: '/images/instalacjebasenowe.png', // Pojedynczy obraz PNG
     icon: <PoolIcon sx={{ fontSize: 160 }} />,
   },
   {
     title: 'REGENERACJA FUNDAMENTÓW',
-    description: 'Diagnostyka i ocena stanu technicznego fundamentów.\nWykonanie prac naprawczych, takich jak iniekcje uszczelniające i wzmacnianie strukturalne.\nZabezpieczenia przed wilgocią i wodą gruntową.\nMonitorowanie i kontrola stanu fundamentów po zakończeniu prac.',
-    image: '', // Ikona na karcie
-    modalImage: '/mnt/data/image.png', // Obraz w modalu
+    image: '/images/regeneracjafundamentow.png', // Pojedynczy obraz PNG
     icon: <FoundationIcon sx={{ fontSize: 160 }} />,
   },
 ];
