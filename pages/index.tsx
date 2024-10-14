@@ -14,7 +14,8 @@ export default function Home() {
         className="App"
         sx={{
           minHeight: '100svh',
-          minWidth: '100vw',
+          // minWidth: '100vw',
+          width: '100%',
           backgroundColor: "#031B31",
         }}
       >

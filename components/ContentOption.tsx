@@ -13,7 +13,7 @@ const ContentOption: React.FC<ContentOptionProps> = ({ text, image: ImageCompone
       <Card sx={{
         width: '300px',
         border: '2px solid #FDD13C',
-        height: '350px',
+        height: '320px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
