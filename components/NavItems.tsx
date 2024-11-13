@@ -50,7 +50,7 @@ const NavItems: React.FC = () => {
             </Grid>
             <Grid item sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={(e) => handleClick(e, 'biuro@comfortconnector.pl')}>
               <EmailIcon sx={{ color: '#FDD13C', marginRight: '8px' }} />
-              <Typography sx={{ color: '#FDD13C' }}>biuro@comfortconnector.pl</Typography>
+              <Typography sx={{ color: '#FDD13C' }}>biuro.comfortconnector@gmail.com</Typography>
             </Grid>
           </Grid>
         </Grid>
